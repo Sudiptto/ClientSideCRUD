@@ -23,7 +23,7 @@ const AllStudentsView = (props) => {
   // If there is at least one student, render All Students view 
   return (
     <div>
-      <h1>All Students</h1>
+      <h1>All Students (Click on Profile to Learn More About Each of Them)</h1>
 
       {students.map((student) => {
           let name = student.firstname + " " + student.lastname;
@@ -32,6 +32,7 @@ const AllStudentsView = (props) => {
               <Link to={`/student/${student.id}`}>
                 <h2>{name}</h2>
               </Link>
+              <p>College - {student.campus ? student.campus.name : "Not Assigned"}</p>
               <button onClick={() => deleteStudent(student.id)}>Delete</button>
               <hr/>
             </div>
