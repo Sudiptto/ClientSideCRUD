@@ -7,7 +7,7 @@ It constructs a React component to display the all students view page.
 import { Link } from "react-router-dom";
 
 const AllStudentsView = (props) => {
-  const {students, deleteStudent, removeStudentFromCampus} = props;
+  const {students, deleteStudent, removeStudentFromCampus, enrollStudentToCampus} = props;
   // If there is no student, display a message
   if (!students.length) {
     return (
@@ -52,6 +52,21 @@ const AllStudentsView = (props) => {
               }}
               >
               Remove from Campus
+              </button>
+
+              {/* Enroll student to a campus */}
+              <button
+                onClick={() => {
+                  const campusId = prompt(
+                    `Enter the Campus ID to enroll ${name} to a campus:`
+                  );
+                  if (campusId) {
+                    enrollStudentToCampus(student.id, campusId);
+                    window.location.reload(); // Refresh the page
+                  }
+                }}
+              >
+                Enroll Student to Campus
               </button>
               <hr/>
             </div>

@@ -33,6 +33,7 @@ class AllStudentsContainer extends Component {
           students={this.props.allStudents}
           deleteStudent={this.props.deleteStudent}   
           removeStudentFromCampus={this.props.removeStudentFromCampus}
+          enrollStudentToCampus={this.props.enrollStudentToCampus}
 
         />
       </div>
@@ -54,7 +55,8 @@ const mapDispatch = (dispatch) => {
   return {
     fetchAllStudents: () => dispatch(fetchAllStudentsThunk()),
     deleteStudent: (studentId) => dispatch(deleteStudentThunk(studentId)),
-    removeStudentFromCampus: (studentId) => dispatch(editStudentThunk({ id: studentId, campusId: null }))
+    removeStudentFromCampus: (studentId) => dispatch(editStudentThunk({ id: studentId, campusId: null })),
+    enrollStudentToCampus: (studentId, campusId) => dispatch(editStudentThunk({ id: studentId, campusId }))
   };
 };
 
