@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const AllCampusesView = (props) => {
+  const { allCampuses, deleteCampus } = props;
   // If there is no campus, display a message.
   if (!props.allCampuses.length) {
       return (
@@ -40,6 +41,16 @@ const AllCampusesView = (props) => {
           <h4>campus id: {campus.id}</h4>
           <p>{campus.address}</p>
           <p>{campus.description}</p>
+          {/*Delete button */}
+          <button
+            onClick={() => {
+              if (window.confirm(`Are you sure you want to delete ${campus.name}?`)) {
+                deleteCampus(campus.id);
+              }
+            }}
+          >
+            Delete Campus
+          </button>
           <hr/>
         </div>
       ))}
@@ -55,6 +66,7 @@ const AllCampusesView = (props) => {
 // Validate data type of the props passed to component.
 AllCampusesView.propTypes = {
   allCampuses: PropTypes.array.isRequired,
+  deleteCampus: PropTypes.func.isRequired,
 };
 
 export default AllCampusesView;

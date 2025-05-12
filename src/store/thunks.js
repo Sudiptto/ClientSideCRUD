@@ -116,3 +116,16 @@ export const addCampusThunk = (campus) => async (dispatch) => {  // The THUNK
     console.error(err);
   }
 };
+
+//Delete Campus
+//THUNK CREATOR:
+export const deleteCampusThunk = (campusId) => async (dispatch) => {
+  try {
+    // API "delete" call to delete campus by ID
+    await axios.delete(`/api/campuses/${campusId}`);
+    // Dispatch action to update state
+    dispatch(ac.deleteCampus(campusId));
+  } catch (err) {
+    console.error(err);
+  }
+};
