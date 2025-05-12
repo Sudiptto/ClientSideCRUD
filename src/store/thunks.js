@@ -129,3 +129,15 @@ export const deleteCampusThunk = (campusId) => async (dispatch) => {
     console.error(err);
   }
 };
+
+// Edit Campus
+export const editCampusThunk = (campus) => async (dispatch) => {
+  try {
+    // API "put" call to update campus (based on "id" and "campus" object's data)
+    let updatedCampus = await axios.put(`/api/campuses/${campus.id}`, campus);
+    // Dispatch action to update state
+    dispatch(ac.fetchCampus(updatedCampus.data));
+  } catch (err) {
+    console.error(err);
+  }
+};
