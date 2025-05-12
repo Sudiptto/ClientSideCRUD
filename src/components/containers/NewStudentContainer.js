@@ -23,7 +23,8 @@ class NewStudentContainer extends Component {
       email: "",
       gpa: "",
       imageUrl: "",
-      campusId: null,
+      // Get campusId from the location state if available, otherwise set it to null
+      campusId: this.props.location.state?.campusId || "",
       redirect: false,
       redirectId: null,
     };
@@ -71,7 +72,7 @@ class NewStudentContainer extends Component {
       email: "",
       gpa: "",
       imageUrl: "",
-      campusId: null,
+      campusId: "",
       redirect: true,
       redirectId: newStudent.id,
     });
@@ -95,7 +96,8 @@ class NewStudentContainer extends Component {
         <Header />
         <NewStudentView 
           handleChange = {this.handleChange} 
-          handleSubmit={this.handleSubmit}      
+          handleSubmit={this.handleSubmit}  
+          campusId={this.state.campusId}    
         />
       </div>          
     );

@@ -27,31 +27,35 @@ const AllStudentsView = (props) => {
 
       {students.map((student) => {
           let name = student.firstname + " " + student.lastname;
-          return (
+            return (
             <div key={student.id}>
               <Link to={`/student/${student.id}`}>
-                <h2>{name}</h2>
+              <h2>{name}</h2>
               </Link>
               <p>College - {student.campus ? student.campus.name : "Not Assigned"}</p>
               {/*Delete student */}
-              <button onClick={() => deleteStudent(student.id)}>Delete</button>
-                {/*Remove student from Campus (doesnt remove from DB) */}
-                  <button
-                onClick={() => {
-                  if (
-                    window.confirm(
-                      `Are you sure you want to remove ${name} from their campus?`
-                    )
-                  ) {
-                    removeStudentFromCampus(student.id);
-                  }
-                }}
+              <button onClick={() => {
+              deleteStudent(student.id);
+              window.location.reload(); // Refresh the page
+              }}>Delete</button>
+              {/*Remove student from Campus (doesn't remove from DB) */}
+              <button
+              onClick={() => {
+                if (
+                window.confirm(
+                  `Are you sure you want to remove ${name} from their campus?`
+                )
+                ) {
+                removeStudentFromCampus(student.id);
+                window.location.reload(); // Refresh the page
+                }
+              }}
               >
-                Remove from Campus
-            </button>
+              Remove from Campus
+              </button>
               <hr/>
             </div>
-          );
+            );
         }
       )}
       <br/>

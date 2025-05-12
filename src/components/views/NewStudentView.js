@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const NewStudentView = (props) => {
-  const { handleChange, handleSubmit } = props;
+  const { handleChange, handleSubmit, campusId } = props;
   const classes = useStyles();
 
   // Render a New Student view with an input form
@@ -80,8 +80,10 @@ const NewStudentView = (props) => {
           type="number"
           name="campusId"
           placeholder="Campus ID"
+          value={campusId || ""}
           onChange={(e) => handleChange(e)}
-          required // Make campusId mandatory
+          required
+          
         />
         <Button variant="contained" color="primary" type="submit" fullWidth>
           Submit
