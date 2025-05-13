@@ -6,9 +6,55 @@ It constructs a React component to display all campuses.
 ================================================== */
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+
+// Button + layout styles
+const useStyles = makeStyles(() => ({
+  container: {
+    textAlign: "center",
+    padding: "20px",
+  },
+  studentCard: {
+    border: "1px solid #ddd",
+    borderRadius: "8px",
+    padding: "20px",
+    margin: "20px auto",
+    maxWidth: "600px",
+    backgroundColor: "#f9f9f9",
+    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+  },
+  buttonGroup: {
+    display: "flex",
+    justifyContent: "center",
+    gap: "10px",
+    marginTop: "10px",
+  },
+  button: {
+    padding: "10px 20px",
+    fontSize: "14px",
+    fontWeight: "bold",
+    color: "white",
+    backgroundColor: "#007bff",
+    border: "none",
+    borderRadius: "5px",
+    border: "2px solid black",
+    cursor: "pointer",
+    textDecoration: "none",
+  },
+  deleteButton: {
+    backgroundColor: "#dc3545",
+  },
+  removeButton: {
+    backgroundColor: "#ffc107",
+    color: "black",
+  },
+}));
+
 
 const AllCampusesView = (props) => {
   const { allCampuses, deleteCampus } = props;
+  const classes = useStyles();
+  
   // If there is no campus, display a message.
   if (!props.allCampuses.length) {
       return (
@@ -20,7 +66,7 @@ const AllCampusesView = (props) => {
           </p>
           <br />
           <Link to={`/newcampus`}>
-            <button>Add New Campus</button>
+            <button className={classes.button}>Add New Campus</button>
           </Link>
           <br />
           <br />
@@ -43,10 +89,11 @@ const AllCampusesView = (props) => {
           <p>{campus.description}</p>
            {/* Edit Campus button */}
           <Link to={`/editcampus/${campus.id}`}>
-            <button>Edit Campus</button>
+            <button className={classes.button}>Edit Campus</button>
           </Link>
           {/*Delete button */}
           <button
+          className={classes.button}
             onClick={() => {
               if (window.confirm(`Are you sure you want to delete ${campus.name}?`)) {
                 deleteCampus(campus.id);
@@ -60,7 +107,7 @@ const AllCampusesView = (props) => {
       ))}
       <br/>
       <Link to={`/newcampus`}>
-        <button>Add New Campus</button>
+        <button className={classes.button}> Add New Campus</button>
       </Link>
       <br/><br/>
     </div>

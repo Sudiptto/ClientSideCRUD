@@ -4,25 +4,30 @@ import { makeStyles } from '@material-ui/core/styles';
 // Create styling for the input form
 const useStyles = makeStyles(() => ({
   formContainer: {
-    width: '500px',
-    backgroundColor: '#f0f0f5',
-    borderRadius: '5px',
-    margin: 'auto',
-    padding: '20px',
+    width: "500px",
+    backgroundColor: "#f0f0f5",
+    borderRadius: "8px",
+    margin: "40px auto",
+    padding: "20px",
+    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
   },
   formTitle: {
-    marginBottom: '15px',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: '20px',
-    color: '#11153e',
+    marginBottom: "15px",
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: "20px",
+    color: "#11153e",
   },
   inputField: {
-    marginBottom: '15px',
-    width: '100%',
-    padding: '10px',
-    borderRadius: '5px',
-    border: '1px solid #ddd',
+    marginBottom: "15px",
+    width: "100%",
+    padding: "10px",
+    borderRadius: "5px",
+    border: "1px solid #ddd",
+  },
+  submitButton: {
+    marginTop: "20px",
+    textTransform: "none",
   },
 }));
 
