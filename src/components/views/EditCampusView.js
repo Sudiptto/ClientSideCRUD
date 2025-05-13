@@ -26,46 +26,39 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const NewStudentView = (props) => {
-  const { handleChange, handleSubmit, campusId } = props;
+const EditCampusView = (props) => {
+  const { handleChange, handleSubmit, campus } = props;
   const classes = useStyles();
 
-  // Render a New Student view with an input form
+  // Render the edit campus form
   return (
     <div className={classes.formContainer}>
-      <h2 className={classes.formTitle}>Register a New Student</h2>
-      {/*Form to add new students below */}
+      <h2 className={classes.formTitle}>Edit Campus</h2>
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
           className={classes.inputField}
           type="text"
-          name="firstname"
-          placeholder="First Name"
+          name="name"
+          placeholder="Campus Name"
+          value={campus.name}
           onChange={(e) => handleChange(e)}
           required
         />
         <input
           className={classes.inputField}
           type="text"
-          name="lastname"
-          placeholder="Last Name"
+          name="address"
+          placeholder="Campus Address"
+          value={campus.address}
           onChange={(e) => handleChange(e)}
           required
         />
-        <input
+        <textarea
           className={classes.inputField}
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={(e) => handleChange(e)}
-          required
-        />
-        <input
-          className={classes.inputField}
-          type="number"
-          step="0.1"
-          name="gpa"
-          placeholder="GPA (0.0 - 4.0)"
+          name="description"
+          placeholder="Campus Description"
+          rows="4"
+          value={campus.description}
           onChange={(e) => handleChange(e)}
         />
         <input
@@ -73,17 +66,8 @@ const NewStudentView = (props) => {
           type="text"
           name="imageUrl"
           placeholder="Image URL (optional)"
+          value={campus.imageUrl}
           onChange={(e) => handleChange(e)}
-        />
-        <input
-          className={classes.inputField}
-          type="number"
-          name="campusId"
-          placeholder="Campus ID"
-          value={campusId || ""}
-          onChange={(e) => handleChange(e)}
-          required
-          
         />
         <Button variant="contained" color="primary" type="submit" fullWidth>
           Submit
@@ -93,4 +77,4 @@ const NewStudentView = (props) => {
   );
 };
 
-export default NewStudentView;
+export default EditCampusView;

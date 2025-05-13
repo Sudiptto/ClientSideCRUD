@@ -18,11 +18,15 @@ class NewStudentContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
-      firstname: "", 
-      lastname: "", 
-      campusId: null, 
-      redirect: false, 
-      redirectId: null
+      firstname: "",
+      lastname: "",
+      email: "",
+      gpa: "",
+      imageUrl: "",
+      // Get campusId from the location state if available, otherwise set it to null
+      campusId: this.props.location.state?.campusId || "",
+      redirect: false,
+      redirectId: null,
     };
   }
 
@@ -37,10 +41,25 @@ class NewStudentContainer extends Component {
   handleSubmit = async event => {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
 
+    if (!this.state.campusId) {
+      alert("Campus ID is required.");
+      return;
+    }
+
+    // first name , last name, email are required
+    if (!this.state.firstname || !this.state.lastname || !this.state.email) {
+      alert("First name, last name, and email are required.");
+      return;
+    }
+    
+
     let student = {
-        firstname: this.state.firstname,
-        lastname: this.state.lastname,
-        campusId: this.state.campusId
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      email: this.state.email,
+      gpa: this.state.gpa || null, // Optional field
+      imageUrl: this.state.imageUrl || undefined, // default if empty
+      campusId: this.state.campusId || null, 
     };
     
     // Add new student in back-end database
@@ -48,11 +67,14 @@ class NewStudentContainer extends Component {
 
     // Update state, and trigger redirect to show the new student
     this.setState({
-      firstname: "", 
-      lastname: "", 
-      campusId: null, 
-      redirect: true, 
-      redirectId: newStudent.id
+      firstname: "",
+      lastname: "",
+      email: "",
+      gpa: "",
+      imageUrl: "",
+      campusId: "",
+      redirect: true,
+      redirectId: newStudent.id,
     });
   }
 
@@ -74,7 +96,8 @@ class NewStudentContainer extends Component {
         <Header />
         <NewStudentView 
           handleChange = {this.handleChange} 
-          handleSubmit={this.handleSubmit}      
+          handleSubmit={this.handleSubmit}  
+          campusId={this.state.campusId}    
         />
       </div>          
     );
