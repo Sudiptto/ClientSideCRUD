@@ -42,6 +42,26 @@ const StudentView = (props) => {
       ) : (
         <h3>Not Assigned to a Campus</h3>
       )}
+
+      {/*Edit student */}
+      <Link to={`/editstudent/${student.id}`}>
+        <button
+          style={{
+            marginTop: "10px",
+            padding: "10px 20px",
+            fontSize: "16px",
+            backgroundColor: "#ffc107",
+            color: "black",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer"
+          }}
+        >
+          Edit Student
+        </button>
+      </Link>
+
+      {/*Link back to the originals tudent page */}
       <Link to="/students">
         <button
           style={{
