@@ -90,7 +90,7 @@ const HomePageView = () => {
         </div>
       
       </div>
-
+      <p>Note on routing: In the view campuses, you can edit/delete the campus & add students to campuses & such routes, clink on the link on each campus to get to the individual campus where you can find more data. For the All Students you can go in, add student, de-enroll and/or enroll students to campus (or delete them staight up). Same logic applies click on the student and you get to the individual student view</p>
     </div>
   );    
 }
